@@ -11,7 +11,7 @@ string pesananMinuman[maxPesanan], nama;
 int jumlahPesananMakanan = 0, jumlahPesananMinuman = 0;
 
 struct makanan {
-    string nama[maxMakan] = {"Mie Gacoan lvl 0-4", "Mie Gacoan lvl 6-8", "Mie Hompimpa lvl 0-4", "Mie Hompimpa lvl 6-8", "Mie Suit", "Udang Keju", "Udang Rambutan", "Lumpia Udang", "Siomay Ayam", "Pangsit Goreng"};
+    string nama[maxMakan] = {"Mie Gacoan lvl 0-4", "Udang Keju", "Mie Gacoan lvl 6-8", "Udang Rambutan", "Mie Hompimpa lvl 0-4", "Lumpia Udang", "Mie Hompimpa lvl 6-8", "Siomay Ayam", "Pangsit Goreng"};
     int harga[maxMakan] = {10500, 11500, 10500, 11500, 10500, 9500, 9500, 9500, 9500, 9500};
 } Makanan;
 
@@ -159,9 +159,13 @@ void pesanMakan(string* nama) {
 			    break;
 		}
 	}while(input != 13);
-    if (pilih >= 1 && pilih <= maxMakan) {
-        string makananDipilih = Makanan.nama[pilih - 1];
-        int hargaPilihan = Makanan.harga[pilih - 1];
+    if (pilih >= 0 && pilih <= maxMakan) {
+        string makananDipilih = Makanan.nama[pilih];
+        int hargaPilihan = Makanan.harga[pilih];
+    	if (pilih == (7,9,11)){
+    		makananDipilih = Makanan.nama[5];
+    		hargaPilihan = Makanan.harga[5];
+		}
         cout << "Anda memilih " << makananDipilih << " dengan harga Rp. " << hargaPilihan << "\n";
         int porsi;
         cout << "Berapa porsi? "; cin >> porsi;
