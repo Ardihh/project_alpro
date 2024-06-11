@@ -1,4 +1,6 @@
 #include <iostream>
+#include <conio.h>
+#include <iomanip>
 using namespace std;
 
 const int maxValue = 3;
@@ -24,15 +26,16 @@ struct minuman {
     int harga[maxValue] = {4000, 5000, 7000};
 } Minuman;
 
-void showMenu();
+void mainMenu();
 void strip() {
-    cout << "\n---------------------------------------------------------------------------------------------\n";
+    cout << "\n------------------------------------------------------------------------------------------\n";
 }
-
+      
 void header(string* nama) {
-    cout << "Atas nama: " << *nama;
-    cout << "\nPesanan nomor: " << &nama;
-    strip();
+	cout << "|o|========= WELCOME TO CASH =========|o|\n";
+    cout << "    Atas nama: " << *nama << endl;
+    cout << "    Pesanan nomor: " << &nama << endl;
+    cout << "|o|===================================|o|\n";
 }
 
 void tampilkanStruk(string* nama) {
@@ -57,9 +60,11 @@ void pesanMakan(string* nama) {
     system("cls");
     header(nama);
     cout << "Pilih makanan: \n";
+    //menampilkan menu makan
     for (int i = 0; i < maxValue; i++) {
         cout << i + 1 << ". " << Makanan.nama[i] << " \t(Rp. " << Makanan.harga[i] << ")\n";
     }
+    //pilih makan
     int pilihan;
     cout << ">> "; cin >> pilihan;
     if (pilihan >= 1 && pilihan <= maxValue) {
@@ -81,7 +86,7 @@ void pesanMakan(string* nama) {
             if (konfir == 'y' || konfir == 'Y') {
                 pesanMakan(nama);
             } else {
-                showMenu();
+                mainMenu();
             }
         } else {
             totalHarga -= hargaPilihan * porsi;
@@ -123,7 +128,7 @@ void pesanMinum(string* nama) {
             if (konfir == 'y' || konfir == 'Y') {
                 pesanMinum(nama);
             } else {
-                showMenu();
+                mainMenu();
             }
         } else {
             totalHarga -= hargaPilihan * porsi;
@@ -137,20 +142,42 @@ void pesanMinum(string* nama) {
     }
 }
 
-void showMenu() {
-    int pilih = 0;
-    system("cls");
-    header(&nama);
-    cout << "Silahkan pilih:\n1. Pesan makan\n2. Pesan minum\n3. Selesai memesan\n>> "; cin >> pilih;
-    switch (pilih) {
-        case 1: pesanMakan(&nama); break;
-        case 2: pesanMinum(&nama); break;
-        case 3: tampilkanStruk(&nama); break;
-        default: cout << "Pilihan tidak valid.\n"; showMenu(); break;
-    }
+void mainMenu (){
+	char jawaban;
+	int pilih = 0;
+	char input;
+	strip();
+	do {
+		system("cls");
+		header(&nama);
+		if (pilih == 0) {
+    		cout <<  "\x1b[35m" << setw(27) << "=> PILIH MAKAN\n";
+    		cout <<  "\x1b[0m" <<  setw(27) << "PILIH MINUM\n";
+    		cout <<  setw(25) << "KELUAR\n";
+		} else if (pilih == 1) {
+			cout << setw(27) << "PILIH MAKAN\n";
+	    	cout << "\x1b[35m" << setw(27) << "=> PILIH MINUM\n";
+	    	cout << "\x1b[0m"  << setw(25) << "KELUAR\n";
+		} else if (pilih == 2) {
+			cout << setw(27) << "PILIH MAKAN\n";
+			cout << setw(27) << "PILIH MINUM\n";
+	    	cout << "\x1b[35m" << setw(29) << "=>    KELUAR\n\x1b[0m";
+	    }
+		input = _getch();
+		switch (input) {
+			case 72:
+		    	pilih = (pilih == 0) ? 2 : pilih - 1;
+	    		break;
+			case 80:
+			    pilih = (pilih == 2) ? 0 : pilih + 1;
+			    break;
+		}
+	}while(input != 13);
+	if (pilih == 0) pesanMakan(&nama); 
+    else if (pilih == 1) pesanMinum(&nama); 
+    else if (pilih == 3) tampilkanStruk(&nama);
 }
-
 int main() {
-    cout << "Atas nama siapa ka? "; cin >> nama;
-    showMenu();
+    cout << "\tAtas nama siapa ka?\t"; getline(cin, nama);
+    mainMenu();
 }
