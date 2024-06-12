@@ -22,14 +22,15 @@ struct minuman {
 } Minuman;
 
 void mainMenu();
-void strip() {
-    cout << "\n------------------------------------------------------------------------------------------\n";
-}
       
 void header(string* nama) {
 	cout << "|o|=========== WELCOME TO CASH ===========|o|\n";
-    cout << "    Atas nama: " << *nama << endl;
-    cout << "    Pesanan nomor: " << &nama << endl;
+	if (*nama != admin){
+    	cout << "    Atas nama: " << *nama << endl;
+    	cout << "    Pesanan nomor: " << &nama << endl;
+	}else{
+		cout << "            Selamat Datang " << *nama << "!\n";
+	}
     cout << "|o|=======================================|o|\n\n";
 }
 
@@ -209,8 +210,9 @@ void mainMenu(){
 
 void Admin();
 
-void createMenu() {
+void createMenu(string* nama) {
     system("cls");
+    header(nama);
     int choice, index;
     string name;
     int price;
@@ -242,7 +244,7 @@ void createMenu() {
     Admin();
 }
 
-void deleteMenu() {
+void deleteMenu(string* nama) {
     system("cls");
     int choice, index;
     char input;
@@ -253,7 +255,7 @@ void deleteMenu() {
     if (choice == 1) {
 		do {
 			system("cls");
-    		header(&nama);
+    		header(nama);
 	    	cout << "Pilih makanan: \n";
 		    for (int i = 0; i < maxMakan; i++) {
         	   	if (i == index) {
@@ -281,7 +283,7 @@ void deleteMenu() {
     } else if (choice == 2) {
 		do {
 			system("cls");
-    		header(&nama);
+    		header(nama);
     		cout << "Pilih minuman: \n";
 		    for (int i = 0; i < maxMinum; ++i) {
            		if (i == index) {
@@ -314,7 +316,7 @@ void deleteMenu() {
     Admin();
 }
 
-void updateMenu() {
+void updateMenu(string* nama) {
     system("cls");
     int choice, index = 0;
     string name;
@@ -327,7 +329,7 @@ void updateMenu() {
 	char input;
 	do {
 		system("cls");
-    	header(&nama);
+    	header(nama);
     	cout << "Pilih makanan: \n";
 	    for (int i = 0; i < maxMakan; i++) {
            	if (i == index) {
@@ -361,7 +363,7 @@ void updateMenu() {
         char input;
 	do {
 		system("cls");
-    	header(&nama);
+    	header(nama);
     	cout << "Pilih minuman: \n";
 	    for (int i = 0; i < maxMinum; ++i) {
            	if (i == index) {
@@ -416,7 +418,6 @@ void readMenu() {
 void Admin() {
     int pilih = 0;
 	char input;
-	strip();
 	do {
 		system("cls");
 		header(&nama);
@@ -462,9 +463,9 @@ void Admin() {
 		}
 	}while(input != 13);
     switch (pilih) {
-        case 0: createMenu(); break;
-        case 1: deleteMenu(); break;
-        case 2: updateMenu(); break;
+        case 0: createMenu(&nama); break;
+        case 1: deleteMenu(&nama); break;
+        case 2: updateMenu(&nama); break;
         case 3: readMenu(); break;
         case 4:
         	system("cls");
@@ -492,9 +493,6 @@ int main() {
     if (nama == admin){
    		loginAdmin();
 	}else{
-		cout << "\tAtas nama siapa ka?\t"; 
-		getline(cin, nama);
 		mainMenu();
-	}	
-	system("cls");
+	}
 }
