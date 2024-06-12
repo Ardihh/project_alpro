@@ -27,10 +27,10 @@ void strip() {
 }
       
 void header(string* nama) {
-	cout << "|o|========= WELCOME TO CASH =========|o|\n";
+	cout << "|o|=========== WELCOME TO CASH ===========|o|\n";
     cout << "    Atas nama: " << *nama << endl;
     cout << "    Pesanan nomor: " << &nama << endl;
-    cout << "|o|===================================|o|\n\n";
+    cout << "|o|=======================================|o|\n\n";
 }
 
 void tampilkanStruk(string* nama) {
@@ -180,17 +180,17 @@ void mainMenu(){
 		system("cls");
 		header(&nama);
 		if (pilih == 0) {
-    		cout <<  "\x1b[35m" << setw(27) << "=> PILIH MAKAN\n";
-    		cout <<  "\x1b[0m" <<  setw(27) << "PILIH MINUM\n";
-    		cout <<  setw(25) << "KELUAR\n";
+    		cout << "\t\x1b[35m==============================\n\t|         PESAN MAKAN         |\n\t==============================\x1b[0m\n";
+			cout << "\t==============================\n\t|         PESAN MINUM         |\n\t==============================\n";
+			cout << "\t==============================\n\t|           SELESAI           |\n\t==============================\n";
 		} else if (pilih == 1) {
-			cout << setw(27) << "PILIH MAKAN\n";
-	    	cout << "\x1b[35m" << setw(27) << "=> PILIH MINUM\n";
-	    	cout << "\x1b[0m"  << setw(25) << "KELUAR\n";
+			cout << "\t==============================\n\t|         PESAN MAKAN         |\n\t==============================\n";
+			cout << "\t\x1b[35m==============================\n\t|         PESAN MINUM         |\n\t==============================\x1b[0m\n";
+			cout << "\t==============================\n\t|           SELESAI           |\n\t==============================\n";
 		} else if (pilih == 2) {
-			cout << setw(27) << "PILIH MAKAN\n";
-			cout << setw(27) << "PILIH MINUM\n";
-	    	cout << "\x1b[35m" << setw(29) << "=>    KELUAR\n\x1b[0m";
+			cout << "\t==============================\n\t|         PESAN MAKAN         |\n\t==============================\n";
+			cout << "\t==============================\n\t|         PESAN MINUM         |\n\t==============================\n";
+			cout << "\t\x1b[35m==============================\n\t|           SELESAI           |\n\t==============================\x1b[0m\n";
 	    }
 		input = _getch();
 		switch (input) {
@@ -421,35 +421,35 @@ void Admin() {
 		system("cls");
 		header(&nama);
 		if (pilih == 0) {
-    		cout <<  "\x1b[35m=> TAMBAH MENU\x1b[0m\n";
-    		cout << "HAPUS MENU\n";
-    		cout << "EDIT MENU\n";
-    		cout << "LIHAT MENU\n";
-    		cout << "KELUAR";
+    		cout << "\t\x1b[35m==============================\n\t|        TAMBAH  MENU        |\n\t==============================\x1b[0m\n";
+			cout << "\t==============================\n\t|         HAPUS MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|         EDIT  MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|         LIHAT MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|           KELUAR           |\n\t==============================\n";
 		} else if (pilih == 1) {
-			cout <<  "TAMBAH MENU\n";
-    		cout << "=> HAPUS MENU\n";
-    		cout << "EDIT MENU\n";
-    		cout << "LIHAT MENU\n";
-    		cout << "KELUAR";
+			cout << "\t==============================\n\t|        TAMBAH  MENU        |\n\t==============================\n";
+			cout << "\t\x1b[35m==============================\n\t|         HAPUS MENU         |\n\t==============================\x1b[0m\n";
+			cout << "\t==============================\n\t|         EDIT  MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|         LIHAT MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|           KELUAR           |\n\t==============================\n";
 		} else if (pilih == 2) {
-			cout <<  "TAMBAH MENU\n";
-    		cout << "HAPUS MENU\n";
-    		cout << "=> EDIT MENU\n";
-    		cout << "LIHAT MENU\n";
-    		cout << "KELUAR";
+			cout << "\t==============================\n\t|        TAMBAH  MENU        |\n\t==============================\n";
+			cout << "\t==============================\n\t|         HAPUS MENU         |\n\t==============================\n";
+			cout << "\t\x1b[35m==============================\n\t|         EDIT  MENU         |\n\t==============================\x1b[0m\n";
+			cout << "\t==============================\n\t|         LIHAT MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|           KELUAR           |\n\t==============================\n";
 	    }else if (pilih == 3){
-	    	cout <<  "TAMBAH MENU\n";
-    		cout << "HAPUS MENU\n";
-    		cout << "EDIT MENU\n";
-    		cout << "=> LIHAT MENU\n";
-    		cout << "KELUAR";
+	    	cout << "\t==============================\n\t|        TAMBAH  MENU        |\n\t==============================\n";
+			cout << "\t==============================\n\t|         HAPUS MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|         EDIT  MENU         |\n\t==============================\n";
+			cout << "\t\x1b[35m==============================\n\t|         LIHAT MENU         |\n\t==============================\x1b[0m\n";
+			cout << "\t==============================\n\t|           KELUAR           |\n\t==============================\n";
 		}else if (pilih == 4){
-			cout <<  "TAMBAH MENU\n";
-    		cout << "HAPUS MENU\n";
-    		cout << "EDIT MENU\n";
-    		cout << "LIHAT MENU\n";
-    		cout << "=> KELUAR";
+			cout << "\t==============================\n\t|        TAMBAH  MENU        |\n\t==============================\n";
+			cout << "\t==============================\n\t|         HAPUS MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|         EDIT  MENU         |\n\t==============================\n";
+			cout << "\t==============================\n\t|         LIHAT MENU         |\n\t==============================\n";
+			cout << "\t\x1b[35m==============================\n\t|           KELUAR           |\n\t==============================\x1b[0m\n";
 		}
 		input = _getch();
 		switch (input) {
@@ -466,19 +466,35 @@ void Admin() {
         case 1: deleteMenu(); break;
         case 2: updateMenu(); break;
         case 3: readMenu(); break;
-        case 4: mainMenu(); break;
+        case 4:
+        	system("cls");
+			cin.ignore();
+			cout << "\tAtas nama siapa ka?\t"; 
+			getline(cin, nama);
+			mainMenu();
+			break;
         default: cout << "Pilihan tidak valid.\n"; Admin(); break;
     }
 }
 
-int main() {
+void loginAdmin(){
 	string pass;
-    cout << "\tAtas nama siapa ka?\t"; getline(cin, nama);
-    if (nama == admin){
-    	cout << "\tMasukkan password: "; cin >> pass;
-    	if (pass == admin){
-			Admin();
-		}
+	system("cls");
+   	header(&nama);
+    cout << "\tMasukkan password: "; cin >> pass;
+   	if (pass == admin){
+		Admin();
 	}
-    mainMenu();
+}
+int main() {
+	system("cls");
+   	cout << "\tAtas nama siapa ka?\t"; getline(cin, nama);
+    if (nama == admin){
+   		loginAdmin();
+	}else{
+		cout << "\tAtas nama siapa ka?\t"; 
+		getline(cin, nama);
+		mainMenu();
+	}	
+	system("cls");
 }
