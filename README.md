@@ -3,16 +3,17 @@
 #include <iomanip>
 using namespace std;
 
-const int maxMakan = 10, maxPesanan = 10, maxMinum = 14;
+const int maxMakan = 9, maxPesanan = 10, maxMinum = 14;
 int totalHarga = 0, totalPorsiMakanan[maxPesanan] = {0}, totalPorsiMinuman[maxPesanan] = {0};
 string pesananMakanan[maxPesanan];
 int hargaMakanan[maxPesanan], hargaMinuman[maxPesanan];
 string pesananMinuman[maxPesanan], nama;
 int jumlahPesananMakanan = 0, jumlahPesananMinuman = 0;
+string admin = "admin";
 
 struct makanan {
-    string nama[maxMakan] = {"Mie Gacoan lvl 0-4", "Udang Keju", "Mie Gacoan lvl 6-8", "Udang Rambutan", "Mie Hompimpa lvl 0-4", "Lumpia Udang", "Mie Hompimpa lvl 6-8", "Siomay Ayam", "Pangsit Goreng"};
-    int harga[maxMakan] = {10500, 11500, 10500, 11500, 10500, 9500, 9500, 9500, 9500, 9500};
+    string nama[maxMakan] = {"Mie Gacoan lvl 0-4", "Mie Gacoan lvl 6-8", "Mie Hompimpa lvl 0-4", "Mie Hompimpa lvl 6-8", "Lumpia Udang", "Udang Rambutan", "Udang Keju", "Siomay Ayam", "Pangsit Goreng"};
+    int harga[maxMakan] = {10500, 11500, 10500, 11500, 10500, 9500, 9500, 9500, 9500};
 } Makanan;
 
 struct minuman {
@@ -51,122 +52,41 @@ void tampilkanStruk(string* nama) {
 }
 
 void pesanMakan(string* nama) {
-    //menampilkan menu makan
     int pilih = 0;
 	char input;
 	do {
 		system("cls");
     	header(nama);
-    	cout << "Pilih makanan: \n";;
-		if (pilih == 0) {
-    		cout << "\x1b[35m=> "<< Makanan.nama[0] << "\x1b[0m          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4        Lumpia Udang\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 1) {
-			cout <<  "   Mie Gacoan lvl 0-4      " << "\x1b[35m=>  Udang Keju\n";
-    		cout <<  "\x1b[0m   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4        Lumpia Udang\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 2) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "\x1b[35m=> Mie Gacoan lvl 6-8          " << "\x1b[0mUdang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4        Lumpia Udang\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 3) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8      " << "\x1b[35m=>  Udang Rambutan\n";
-    		cout <<  "   \x1b[0mMie Hompimpa lvl 0-4        Lumpia Udang\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 4) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "\x1b[35m=> Mie Hompimpa lvl 0-4        " << "\x1b[0mLumpia Udang\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 5) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4    " << "\x1b[35m=>  Lumpia Udang\n";
-    		cout <<  "   \x1b[0mMie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 6) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4        Lumpia Udang\n";
-    		cout <<  "\x1b[35m=> Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   \x1b[0mSiomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 7) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4    " << "\x1b[35m=>  Lumpia Udang\n";
-    		cout <<  "   \x1b[0mMie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 8) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4        Lumpia Udang\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "\x1b[35m=> Siomay Ayam\x1b[0m\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 9) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4    " << "\x1b[35m=>  Lumpia Udang\x1b[0m\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		} else if (pilih == 10) {
-			cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4        Lumpia Udang\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "\x1b[35m=> Pangsit Goreng\x1b[0m\n";
-	    }else if (pilih == 11){
-	    	cout <<  "   Mie Gacoan lvl 0-4          Udang Keju\n";
-    		cout <<  "   Mie Gacoan lvl 6-8          Udang Rambutan\n";
-    		cout <<  "   Mie Hompimpa lvl 0-4    " << "\x1b[35m=>  Lumpia Udang\x1b[0m\n";
-    		cout <<  "   Mie Hompimpa lvl 6-8\n";
-    		cout <<  "   Siomay Ayam\n";
-    		cout <<  "   Pangsit Goreng\n";
-		}
+    	cout << "Pilih makanan: \n";
+	    for (int i = 0; i < maxMakan; ++i) {
+           	if (i == pilih) {
+   	            cout << "\x1b[35m=> " << Makanan.nama[i] << "\x1b[0m" << endl;
+	        } else {
+              	cout << "   " << Makanan.nama[i] << endl;
+           	}
+       	}
 		input = _getch();
 		switch (input) {
 			case 72: // Panah atas (ASCII value)
-		    	pilih = (pilih == 0) ? 10 : pilih - 2;
-	    		break;
-			case 80: // Panah bawah (ASCII value)
-			    pilih = (pilih == 10) ? 0 : pilih + 2;
-			    break;
-			    case 75: //kiri
-				pilih = (pilih == 11) ? 0 : pilih - 1;
-			    break;
-			case 77: //kanan
-				pilih = (pilih == 11) ? 11 : pilih + 1;
-			    break;
+                pilih = (pilih == 0) ? maxMakan - 1 : pilih - 1;
+                break;
+            case 80: // Panah bawah (ASCII value)
+                pilih = (pilih == maxMakan - 1) ? 0 : pilih + 1;
+                break;
 		}
 	}while(input != 13);
-    if (pilih >= 0 && pilih <= maxMakan) {
+    if (pilih >= 0 && pilih <= 11) {
         string makananDipilih = Makanan.nama[pilih];
         int hargaPilihan = Makanan.harga[pilih];
-    	if (pilih == (7,9,11)){
-    		makananDipilih = Makanan.nama[5];
-    		hargaPilihan = Makanan.harga[5];
+        int level;
+        if (pilih == 0 || pilih == 1 || pilih == 2 || pilih == 3){
+        	cout << "\nLevel Berapa ka? "; cin >> level;
 		}
-        cout << "Anda memilih " << makananDipilih << " dengan harga Rp. " << hargaPilihan << "\n";
+        cout << "Anda memilih " << makananDipilih;
+		if (pilih == 0 || pilih == 1 || pilih == 2 || pilih == 3){
+			cout << " level " << level;
+		}
+		cout << " dengan harga Rp. " << hargaPilihan << "\n";
         int porsi;
         cout << "Berapa porsi? "; cin >> porsi;
         pesananMakanan[jumlahPesananMakanan] = makananDipilih;
@@ -197,17 +117,32 @@ void pesanMakan(string* nama) {
 }
 
 void pesanMinum(string* nama) {
-    system("cls");
-    header(nama);
-    cout << "Pilih minuman: \n";
-    for (int i = 0; i < maxMinum; i++) {
-        cout << i + 1 << ". " << Minuman.nama[i] << " \t(Rp. " << Minuman.harga[i] << ")\n";
-    }
-    int pilihan;
-    cout << ">> "; cin >> pilihan;
-    if (pilihan >= 1 && pilihan <= maxMinum) {
-        string minumanDipilih = Minuman.nama[pilihan - 1];
-        int hargaPilihan = Minuman.harga[pilihan - 1];
+    int pilih = 0;
+	char input;
+	do {
+		system("cls");
+    	header(nama);
+    	cout << "Pilih minuman: \n";
+	    for (int i = 0; i < maxMinum; ++i) {
+           	if (i == pilih) {
+   	            cout << "\x1b[35m=> " << Minuman.nama[i] << "\x1b[0m" << endl;
+	        } else {
+              	cout << "   " << Minuman.nama[i] << endl;
+           	}
+       	}
+		input = _getch();
+		switch (input) {
+			case 72: // Panah atas (ASCII value)
+                pilih = (pilih == 0) ? maxMinum - 1 : pilih - 1;
+                break;
+            case 80: // Panah bawah (ASCII value)
+                pilih = (pilih == maxMinum - 1) ? 0 : pilih + 1;
+                break;
+		}
+	}while(input != 13);
+    if (pilih >= 1 && pilih <= maxMinum) {
+        string minumanDipilih = Minuman.nama[pilih];
+        int hargaPilihan = Minuman.harga[pilih];
         cout << "Anda memilih " << minumanDipilih << " dengan harga Rp. " << hargaPilihan << "\n";
         int porsi;
         cout << "Berapa porsi? "; cin >> porsi;
@@ -238,10 +173,9 @@ void pesanMinum(string* nama) {
     }
 }
 
-void mainMenu (){
+void mainMenu(){
 	int pilih = 0;
 	char input;
-	strip();
 	do {
 		system("cls");
 		header(&nama);
@@ -258,7 +192,7 @@ void mainMenu (){
 			cout << setw(27) << "PILIH MINUM\n";
 	    	cout << "\x1b[35m" << setw(29) << "=>    KELUAR\n\x1b[0m";
 	    }
-		input = _getche();
+		input = _getch();
 		switch (input) {
 			case 72: //atas
 		    	pilih = (pilih == 0) ? 2 : pilih - 1;
@@ -266,19 +200,285 @@ void mainMenu (){
 			case 80: //bawah
 			    pilih = (pilih == 2) ? 0 : pilih + 1;
 			    break;
-			case 75: //kiri
-				pilih = (pilih == 2) ? 0 : pilih + 1;
-			    break;
-			case 77: //kanan
-				pilih = (pilih == 2) ? 0 : pilih + 1;
-			    break;
 		}
 	}while(input != 13);
 	if (pilih == 0) pesanMakan(&nama); 
     else if (pilih == 1) pesanMinum(&nama); 
     else if (pilih == 2) tampilkanStruk(&nama);
 }
+
+void Admin();
+
+void createMenu() {
+    system("cls");
+    int choice, index;
+    string name;
+    int price;
+    
+    cout << "Tambah Menu:\n1. Makanan\n2. Minuman\n>> ";
+    cin >> choice;
+    
+    if (choice == 1) {
+		cout << "Nama Makanan: ";
+        cin.ignore();
+        getline(cin, name);
+        cout << "Harga: ";
+   	    cin >> price;
+    	Makanan.nama[index] = name;
+        Makanan.harga[index] = price;
+    } else if (choice == 2) {
+        cout << "Nama Minuman: ";
+        cin.ignore();
+        getline(cin, name);
+        cout << "Harga: ";
+        cin >> price;
+        Minuman.nama[index] = name;
+        Minuman.harga[index] = price;
+    } else {
+        cout << "Pilihan tidak valid.\n";
+    }
+    
+    system("pause");
+    Admin();
+}
+
+void deleteMenu() {
+    system("cls");
+    int choice, index;
+    char input;
+    
+    cout << "Hapus Menu:\n1. Makanan\n2. Minuman\n>> ";
+    cin >> choice;
+    
+    if (choice == 1) {
+		do {
+			system("cls");
+    		header(&nama);
+	    	cout << "Pilih makanan: \n";
+		    for (int i = 0; i < maxMakan; i++) {
+        	   	if (i == index) {
+   		            cout << "\x1b[35m=> " << Makanan.nama[i] << "\x1b[0m" << endl;
+		        } else {
+        	      	cout << "   " << Makanan.nama[i] << endl;
+    	       	}
+	       	}
+			input = _getch();
+			switch (input) {
+				case 72: // Panah atas (ASCII value)
+                	index = (index == 0) ? maxMakan - 1 : index - 1;
+            	    break;
+        	    case 80: // Panah bawah (ASCII value)
+    	            index = (index == maxMakan - 1) ? 0 : index + 1;
+	                break;
+			}
+   		} while (input != 13);
+        if (index >= 0 && index < maxMakan) {
+            Makanan.nama[index] = "";
+            Makanan.harga[index] = 0;
+        } else {
+            cout << "Index tidak valid.\n";
+        }
+    } else if (choice == 2) {
+		do {
+			system("cls");
+    		header(&nama);
+    		cout << "Pilih minuman: \n";
+		    for (int i = 0; i < maxMinum; ++i) {
+           		if (i == index) {
+   	    	        cout << "\x1b[35m=> " << Minuman.nama[i] << "\x1b[0m" << endl;
+		        } else {
+	              	cout << "   " << Minuman.nama[i] << endl;
+           		}
+       		}
+			input = _getch();
+			switch (input) {
+				case 72: // Panah atas (ASCII value)
+        	        index = (index == 0) ? maxMinum - 1 : index - 1;
+    	            break;
+	            case 80: // Panah bawah (ASCII value)
+                	index = (index == maxMinum - 1) ? 0 : index + 1;
+            	    break;
+			}
+		}while(input != 13);
+        if (index >= 0 && index < maxMinum) {
+            Minuman.nama[index] = "";
+            Minuman.harga[index] = 0;
+        } else {
+            cout << "Index tidak valid.\n";
+        }
+    } else {
+        cout << "Pilihan tidak valid.\n";
+    }
+    
+    system("pause");
+    Admin();
+}
+
+void updateMenu() {
+    system("cls");
+    int choice, index = 0;
+    string name;
+    int price;
+    
+    cout << "Edit Menu:\n1. Makanan\n2. Minuman\n>> ";
+    cin >> choice;
+    
+    if (choice == 1) {
+	char input;
+	do {
+		system("cls");
+    	header(&nama);
+    	cout << "Pilih makanan: \n";
+	    for (int i = 0; i < maxMakan; i++) {
+           	if (i == index) {
+   	            cout << "\x1b[35m=> " << Makanan.nama[i] << "\x1b[0m" << endl;
+	        } else {
+              	cout << "   " << Makanan.nama[i] << endl;
+           	}
+       	}
+		input = _getch();
+		switch (input) {
+			case 72: // Panah atas (ASCII value)
+                index = (index == 0) ? maxMakan - 1 : index - 1;
+                break;
+            case 80: // Panah bawah (ASCII value)
+                index = (index == maxMakan - 1) ? 0 : index + 1;
+                break;
+		}
+    } while (input != 13);
+        if (index >= 0 && index < maxMakan) {
+            cout << "Nama Makanan: ";
+            cin.ignore();
+            getline(cin, name);
+            cout << "Harga: ";
+            cin >> price;
+            Makanan.nama[index] = name;
+            Makanan.harga[index] = price;
+        } else {
+            cout << "Index tidak valid.\n";
+        }
+    } else if (choice == 2) {
+        char input;
+	do {
+		system("cls");
+    	header(&nama);
+    	cout << "Pilih minuman: \n";
+	    for (int i = 0; i < maxMinum; ++i) {
+           	if (i == index) {
+   	            cout << "\x1b[35m=> " << Minuman.nama[i] << "\x1b[0m" << endl;
+	        } else {
+              	cout << "   " << Minuman.nama[i] << endl;
+           	}
+       	}
+		input = _getch();
+		switch (input) {
+			case 72: // Panah atas (ASCII value)
+                index = (index == 0) ? maxMinum - 1 : index - 1;
+                break;
+            case 80: // Panah bawah (ASCII value)
+                index = (index == maxMinum - 1) ? 0 : index + 1;
+                break;
+		}
+	}while(input != 13);
+        if (index >= 0 && index < maxMinum) {
+            cout << "Nama Minuman: ";
+            cin.ignore();
+            getline(cin, name);
+            cout << "Harga: ";
+            cin >> price;
+            Minuman.nama[index] = name;
+            Minuman.harga[index] = price;
+        } else {
+            cout << "Index tidak valid.\n";
+        }
+    } else {
+        cout << "Pilihan tidak valid.\n";
+    }
+    
+    system("pause");
+    Admin();
+}
+
+void readMenu() {
+    system("cls");
+    cout << "Daftar Menu Makanan:\n";
+    for (int i = 0; i < maxMakan; i++) {
+        cout << i + 1 << ". " << Makanan.nama[i] << " - " << Makanan.harga[i] << endl;
+    }
+    cout << "\nDaftar Menu Minuman:\n";
+    for (int i = 0; i < maxMinum; i++) {
+        cout << i + 1 << ". " << Minuman.nama[i] << " - " << Minuman.harga[i] << endl;
+    }
+    system("pause");
+    Admin();
+}
+
+void Admin() {
+    int pilih = 0;
+	char input;
+	strip();
+	do {
+		system("cls");
+		header(&nama);
+		if (pilih == 0) {
+    		cout <<  "\x1b[35m=> TAMBAH MENU\x1b[0m\n";
+    		cout << "HAPUS MENU\n";
+    		cout << "EDIT MENU\n";
+    		cout << "LIHAT MENU\n";
+    		cout << "KELUAR";
+		} else if (pilih == 1) {
+			cout <<  "TAMBAH MENU\n";
+    		cout << "=> HAPUS MENU\n";
+    		cout << "EDIT MENU\n";
+    		cout << "LIHAT MENU\n";
+    		cout << "KELUAR";
+		} else if (pilih == 2) {
+			cout <<  "TAMBAH MENU\n";
+    		cout << "HAPUS MENU\n";
+    		cout << "=> EDIT MENU\n";
+    		cout << "LIHAT MENU\n";
+    		cout << "KELUAR";
+	    }else if (pilih == 3){
+	    	cout <<  "TAMBAH MENU\n";
+    		cout << "HAPUS MENU\n";
+    		cout << "EDIT MENU\n";
+    		cout << "=> LIHAT MENU\n";
+    		cout << "KELUAR";
+		}else if (pilih == 4){
+			cout <<  "TAMBAH MENU\n";
+    		cout << "HAPUS MENU\n";
+    		cout << "EDIT MENU\n";
+    		cout << "LIHAT MENU\n";
+    		cout << "=> KELUAR";
+		}
+		input = _getch();
+		switch (input) {
+			case 72: //atas
+		    	pilih = (pilih == 0) ? 4 : pilih - 1;
+	    		break;
+			case 80: //bawah
+			    pilih = (pilih == 4) ? 0 : pilih + 1;
+			    break;
+		}
+	}while(input != 13);
+    switch (pilih) {
+        case 0: createMenu(); break;
+        case 1: deleteMenu(); break;
+        case 2: updateMenu(); break;
+        case 3: readMenu(); break;
+        case 4: mainMenu(); break;
+        default: cout << "Pilihan tidak valid.\n"; Admin(); break;
+    }
+}
+
 int main() {
+	string pass;
     cout << "\tAtas nama siapa ka?\t"; getline(cin, nama);
+    if (nama == admin){
+    	cout << "\tMasukkan password: "; cin >> pass;
+    	if (pass == admin){
+			Admin();
+		}
+	}
     mainMenu();
 }
