@@ -35,21 +35,37 @@ void header(string* nama) {
 }
 
 void tampilkanStruk(string* nama) {
-    system("cls");
-    header(nama);
-    cout << "Struk Pembayaran\n";
-    cout << "Makanan:\n";
+    system("cls"); 
+    cout << "\n";
+    cout << "============================================================\n";
+    cout << "                    Struk Pembayaran\n";
+    cout << "============================================================\n";
+    cout << left << setw(22) << "Nama" << setw(10) << "Qty" << setw(20) << "Harga/Porsi" << "Total\n";
+    cout << "------------------------------------------------------------\n";
     for (int i = 0; i < jumlahPesananMakanan; i++) {
-        cout << "- " << pesananMakanan[i] << " (" << totalPorsiMakanan[i] << " porsi)" << " - Rp. " << hargaMakanan[i] * totalPorsiMakanan[i] << endl;
-    }
-    cout << "Minuman:\n";
+        int totalItem = hargaMakanan[i] * totalPorsiMakanan[i];
+        cout << left << setw(22) << pesananMakanan[i]
+             << setw(10) << totalPorsiMakanan[i]
+             << "Rp. " << setw(17) << hargaMakanan[i]
+             << "Rp. " << totalItem << endl;
+        totalHarga += totalItem;
+    }cout<<endl;
     for (int i = 0; i < jumlahPesananMinuman; i++) {
-        cout << "- " << pesananMinuman[i] << " (" << totalPorsiMinuman[i] << " porsi)" << " - Rp. " << hargaMinuman[i] * totalPorsiMinuman[i] << endl;
-    }
+        int totalItem = hargaMinuman[i] * totalPorsiMinuman[i];
+        cout << left << setw(22) << pesananMinuman[i]
+             << setw(10) << totalPorsiMinuman[i]
+             << "Rp. " << setw(17) << hargaMinuman[i]
+             << "Rp. " << totalItem << endl;
+        totalHarga += totalItem;
+    }cout<<endl;
+    cout << "------------------------------------------------------------\n";
     int ppn = totalHarga * 0.10;
-    cout << "PPN: 10%\n";
+    cout << setw(53) << left << "PPN: 10%" << "Rp. " << ppn << endl;
     totalHarga += ppn;
-    cout << "Total Harga: Rp. " << totalHarga << endl;
+    cout << setw(53) << left << "Total Harga:" << "Rp. " << totalHarga << endl;
+    cout << "=============================================================\n";
+    cout << "             Terima Kasih Atas Kunjungan Anda\n";
+    cout << "*************************************************************\n";
 }
 
 void pesanMakan(string* nama) {
