@@ -36,12 +36,16 @@ void header(string* nama) {
 
 void tampilkanStruk(string* nama) {
     system("cls"); 
-    cout << "\n";
+	cout << "                             ???\n";
+	cout << "                     (~~~~~~~~~~~~~~~~)\n";
+	cout << "                      \\--------------/\n";
+	cout << "                       \\____________/\n\n";
     cout << "============================================================\n";
-    cout << "                    Struk Pembayaran\n";
+    cout << "                      Struk Pembayaran\n";
     cout << "============================================================\n";
     cout << left << setw(22) << "Nama" << setw(10) << "Qty" << setw(20) << "Harga/Porsi" << "Total\n";
     cout << "------------------------------------------------------------\n";
+    int totalHarga = 0;
     for (int i = 0; i < jumlahPesananMakanan; i++) {
         int totalItem = hargaMakanan[i] * totalPorsiMakanan[i];
         cout << left << setw(22) << pesananMakanan[i]
@@ -49,7 +53,8 @@ void tampilkanStruk(string* nama) {
              << "Rp. " << setw(17) << hargaMakanan[i]
              << "Rp. " << totalItem << endl;
         totalHarga += totalItem;
-    }cout<<endl;
+    }
+    cout << endl;
     for (int i = 0; i < jumlahPesananMinuman; i++) {
         int totalItem = hargaMinuman[i] * totalPorsiMinuman[i];
         cout << left << setw(22) << pesananMinuman[i]
@@ -57,7 +62,8 @@ void tampilkanStruk(string* nama) {
              << "Rp. " << setw(17) << hargaMinuman[i]
              << "Rp. " << totalItem << endl;
         totalHarga += totalItem;
-    }cout<<endl;
+    }
+    cout << endl;
     cout << "------------------------------------------------------------\n";
     int ppn = totalHarga * 0.10;
     cout << setw(53) << left << "PPN: 10%" << "Rp. " << ppn << endl;
