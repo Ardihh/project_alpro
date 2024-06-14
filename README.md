@@ -9,20 +9,21 @@ string pesananMakanan[maxPesanan];
 int hargaMakanan[maxPesanan], hargaMinuman[maxPesanan];
 string pesananMinuman[maxPesanan], nama;
 int jumlahPesananMakanan = 0, jumlahPesananMinuman = 0;
+const int maxAdmin = 10, maxUser = 10;
+int login = 0;
 string admin = "admin";
-
 struct makanan {
     string nama[maxMakan] = {"Mie Gacoan lvl 0-4", "Mie Gacoan lvl 6-8", "Mie Hompimpa lvl 0-4", "Mie Hompimpa lvl 6-8", "Lumpia Udang", "Udang Rambutan", "Udang Keju", "Siomay Ayam", "Pangsit Goreng"};
     int harga[maxMakan] = {10500, 11500, 10500, 11500, 10500, 9500, 9500, 9500, 9500};
-} Makanan;
+} *Makanan;
 
 struct minuman {
     string nama[maxMinum] = {"Es Gobak Sodor", "Es Petak Umpet", "Es Sluku Bathok", "Es Teklek", "Air Mineral", "Lemon Tea", "Milo", "Orange", "Es Teh", "Teh Tarik", "Vanilla Latte", "Thai Tea", "Thai Grean Tea", "Es Coklat"};
     int harga[maxMinum] = {8600, 8000, 6000, 6000, 4000, 6000, 8000, 5000, 5500, 6400, 8000, 8000, 8000, 8000};
-} Minuman;
+} *Minuman;
 
 void mainMenu();
-      
+void Login();
 void header(string* nama) {
 	cout << "|o|=========== WELCOME TO CASH ===========|o|\n";
 	if (*nama != admin){
@@ -83,9 +84,9 @@ void pesanMakan(string* nama) {
     	cout << "Pilih makanan: \n";
 	    for (int i = 0; i < maxMakan; ++i) {
            	if (i == pilih) {
-   	            cout << "\x1b[35m=> " << Makanan.nama[i] << "\x1b[0m" << endl;
+   	            cout << "\x1b[35m=> " << Makanan->nama[i] << "\x1b[0m" << endl;
 	        } else {
-              	cout << "   " << Makanan.nama[i] << endl;
+              	cout << "   " << Makanan->nama[i] << endl;
            	}
        	}
 		input = _getch();
@@ -99,8 +100,8 @@ void pesanMakan(string* nama) {
 		}
 	}while(input != 13);
     if (pilih >= 0 && pilih <= 11) {
-        string makananDipilih = Makanan.nama[pilih];
-        int hargaPilihan = Makanan.harga[pilih];
+        string makananDipilih = Makanan->nama[pilih];
+        int hargaPilihan = Makanan->harga[pilih];
         int level;
         if (pilih == 0 || pilih == 1 || pilih == 2 || pilih == 3){
         	cout << "\nLevel Berapa ka? "; cin >> level;
@@ -148,9 +149,9 @@ void pesanMinum(string* nama) {
     	cout << "Pilih minuman: \n";
 	    for (int i = 0; i < maxMinum; ++i) {
            	if (i == pilih) {
-   	            cout << "\x1b[35m=> " << Minuman.nama[i] << "\x1b[0m" << endl;
+   	            cout << "\x1b[35m=> " << Minuman->nama[i] << "\x1b[0m" << endl;
 	        } else {
-              	cout << "   " << Minuman.nama[i] << endl;
+              	cout << "   " << Minuman->nama[i] << endl;
            	}
        	}
 		input = _getch();
@@ -164,8 +165,8 @@ void pesanMinum(string* nama) {
 		}
 	}while(input != 13);
     if (pilih >= 1 && pilih <= maxMinum) {
-        string minumanDipilih = Minuman.nama[pilih];
-        int hargaPilihan = Minuman.harga[pilih];
+        string minumanDipilih = Minuman->nama[pilih];
+        int hargaPilihan = Minuman->harga[pilih];
         cout << "Anda memilih " << minumanDipilih << " dengan harga Rp. " << hargaPilihan << "\n";
         int porsi;
         cout << "Berapa porsi? "; cin >> porsi;
@@ -248,16 +249,16 @@ void createMenu(string* nama) {
         getline(cin, name);
         cout << "Harga: ";
    	    cin >> price;
-    	Makanan.nama[index] = name;
-        Makanan.harga[index] = price;
+    	Makanan->nama[index] = name;
+        Makanan->harga[index] = price;
     } else if (choice == 2) {
         cout << "Nama Minuman: ";
         cin.ignore();
         getline(cin, name);
         cout << "Harga: ";
         cin >> price;
-        Minuman.nama[index] = name;
-        Minuman.harga[index] = price;
+        Minuman->nama[index] = name;
+        Minuman->harga[index] = price;
     } else {
         cout << "Pilihan tidak valid.\n";
     }
@@ -281,9 +282,9 @@ void deleteMenu(string* nama) {
 	    	cout << "Pilih makanan: \n";
 		    for (int i = 0; i < maxMakan; i++) {
         	   	if (i == index) {
-   		            cout << "\x1b[35m=> " << Makanan.nama[i] << "\x1b[0m" << endl;
+   		            cout << "\x1b[35m=> " << Makanan->nama[i] << "\x1b[0m" << endl;
 		        } else {
-        	      	cout << "   " << Makanan.nama[i] << endl;
+        	      	cout << "   " << Makanan->nama[i] << endl;
     	       	}
 	       	}
 			input = _getch();
@@ -297,8 +298,8 @@ void deleteMenu(string* nama) {
 			}
    		} while (input != 13);
         if (index >= 0 && index < maxMakan) {
-            Makanan.nama[index] = "";
-            Makanan.harga[index] = 0;
+            Makanan->nama[index] = "";
+            Makanan->harga[index] = 0;
         } else {
             cout << "Index tidak valid.\n";
         }
@@ -309,9 +310,9 @@ void deleteMenu(string* nama) {
     		cout << "Pilih minuman: \n";
 		    for (int i = 0; i < maxMinum; ++i) {
            		if (i == index) {
-   	    	        cout << "\x1b[35m=> " << Minuman.nama[i] << "\x1b[0m" << endl;
+   	    	        cout << "\x1b[35m=> " << Minuman->nama[i] << "\x1b[0m" << endl;
 		        } else {
-	              	cout << "   " << Minuman.nama[i] << endl;
+	              	cout << "   " << Minuman->nama[i] << endl;
            		}
        		}
 			input = _getch();
@@ -325,8 +326,8 @@ void deleteMenu(string* nama) {
 			}
 		}while(input != 13);
         if (index >= 0 && index < maxMinum) {
-            Minuman.nama[index] = "";
-            Minuman.harga[index] = 0;
+            Minuman->nama[index] = "";
+            Minuman->harga[index] = 0;
         } else {
             cout << "Index tidak valid.\n";
         }
@@ -355,9 +356,9 @@ void updateMenu(string* nama) {
     	cout << "Pilih makanan: \n";
 	    for (int i = 0; i < maxMakan; i++) {
            	if (i == index) {
-   	            cout << "\x1b[35m=> " << Makanan.nama[i] << "\x1b[0m" << endl;
+   	            cout << "\x1b[35m=> " << Makanan->nama[i] << "\x1b[0m" << endl;
 	        } else {
-              	cout << "   " << Makanan.nama[i] << endl;
+              	cout << "   " << Makanan->nama[i] << endl;
            	}
        	}
 		input = _getch();
@@ -376,8 +377,8 @@ void updateMenu(string* nama) {
             getline(cin, name);
             cout << "Harga: ";
             cin >> price;
-            Makanan.nama[index] = name;
-            Makanan.harga[index] = price;
+            Makanan->nama[index] = name;
+            Makanan->harga[index] = price;
         } else {
             cout << "Index tidak valid.\n";
         }
@@ -389,9 +390,9 @@ void updateMenu(string* nama) {
     	cout << "Pilih minuman: \n";
 	    for (int i = 0; i < maxMinum; ++i) {
            	if (i == index) {
-   	            cout << "\x1b[35m=> " << Minuman.nama[i] << "\x1b[0m" << endl;
+   	            cout << "\x1b[35m=> " << Minuman->nama[i] << "\x1b[0m" << endl;
 	        } else {
-              	cout << "   " << Minuman.nama[i] << endl;
+              	cout << "   " << Minuman->nama[i] << endl;
            	}
        	}
 		input = _getch();
@@ -410,8 +411,8 @@ void updateMenu(string* nama) {
             getline(cin, name);
             cout << "Harga: ";
             cin >> price;
-            Minuman.nama[index] = name;
-            Minuman.harga[index] = price;
+            Minuman->nama[index] = name;
+            Minuman->harga[index] = price;
         } else {
             cout << "Index tidak valid.\n";
         }
@@ -427,11 +428,11 @@ void readMenu() {
     system("cls");
     cout << "Daftar Menu Makanan:\n";
     for (int i = 0; i < maxMakan; i++) {
-        cout << i + 1 << ". " << Makanan.nama[i] << " - " << Makanan.harga[i] << endl;
+        cout << i + 1 << ". " << Makanan->nama[i] << " - " << Makanan->harga[i] << endl;
     }
     cout << "\nDaftar Menu Minuman:\n";
     for (int i = 0; i < maxMinum; i++) {
-        cout << i + 1 << ". " << Minuman.nama[i] << " - " << Minuman.harga[i] << endl;
+        cout << i + 1 << ". " << Minuman->nama[i] << " - " << Minuman->harga[i] << endl;
     }
     system("pause");
     Admin();
@@ -440,6 +441,8 @@ void readMenu() {
 void Admin() {
     int pilih = 0;
 	char input;
+	Makanan = new makanan;
+    Minuman = new minuman;
 	do {
 		system("cls");
 		header(&nama);
@@ -489,32 +492,67 @@ void Admin() {
         case 1: deleteMenu(&nama); break;
         case 2: updateMenu(&nama); break;
         case 3: readMenu(); break;
-        case 4:
-        	system("cls");
-			cin.ignore();
-			cout << "\tAtas nama siapa ka?\t"; 
-			getline(cin, nama);
-			mainMenu();
-			break;
+        case 4: Login(); break;
         default: cout << "Pilihan tidak valid.\n"; Admin(); break;
     }
+    delete Makanan;
+    delete Minuman;
 }
 
-void loginAdmin(){
-	string pass;
-	system("cls");
-   	header(&nama);
-    cout << "\tMasukkan password: "; cin >> pass;
-   	if (pass == admin){
-		Admin();
+void Login(){
+    char input;
+    string pass;
+    do {
+        system("cls");
+        if (login == 0) {
+            cout << "\t\x1b[35m==============================\n\t|           PENGGUNA         |\n\t==============================\x1b[0m\n";
+            cout << "\t==============================\n\t|            ADMIN           |\n\t==============================\n";
+            cout << "\t==============================\n\t|             END            |\n\t==============================\n";
+        } else if (login == 1) {
+            cout << "\t==============================\n\t|           PENGGUNA         |\n\t==============================\n";
+            cout << "\t\x1b[35m==============================\n\t|            ADMIN           |\n\t==============================\x1b[0m\n";
+            cout << "\t==============================\n\t|             END            |\n\t==============================\n";
+        } else if (login == 2) {
+            cout << "\t==============================\n\t|           PENGGUNA         |\n\t==============================\n";
+            cout << "\t==============================\n\t|            ADMIN           |\n\t==============================\n";
+            cout << "\t\x1b[35m==============================\n\t|             END            |\n\t==============================\x1b[0m\n";
+        }
+        input = _getch();
+        switch (input) {
+            case 72: //atas
+                login = (login == 0) ? 2 : login - 1;
+                break;
+            case 80: //bawah
+                login = (login == 2) ? 0 : login + 1;
+                break;
+        }
+    } while (input != 13);
+    switch(login){
+    	case 0: 
+    		system("cls");
+    		cout << "|o|=========== WELCOME TO CASH ===========|o|\n\n";
+            cout << "\tPesanan atas nama siapa ka?\n\t>> "; cin >> nama;
+            mainMenu();
+            break;
+    	case 1:
+    		do{
+    			system("cls");
+    			cout << "|o|=========== WELCOME TO CASH ===========|o|\n\n";
+            	cout << "\tMasukkan username: "; cin >> nama;
+            	cout << "\tMasukkan password: "; cin >> pass;
+            	if (nama == admin && pass == admin){
+	            	Admin()	;
+				}else{
+					cout << "\tusername/password salah.\n\n";
+					system("pause");
+				}
+			}while (nama == admin || pass == admin);
+			break;
+    	case 3: break;
 	}
 }
+
 int main() {
 	system("cls");
-   	cout << "\tAtas nama siapa ka?\t"; getline(cin, nama);
-    if (nama == admin){
-   		loginAdmin();
-	}else{
-		mainMenu();
-	}
+   	Login();
 }
